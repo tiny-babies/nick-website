@@ -27,12 +27,14 @@ const Welcome = () => {
                     <h2 className="welcome-h2">Nicolas Johnson</h2>
                     <br/>
                     <br/>
-                    <h1 className="welcome-h1">Full-Stack Engineer</h1>
+                    <br />
+                    <h1 className="welcome-h1">Software Engineer</h1>
                     <br />
                     <br />
                     <br />
                     <br />
-                    <p className="lead"> Take a look around my website, check out my arcade portfolio, and learn about my capabilities as a Full-Stack (Front-End oriented) engineer.</p>
+                    <br />
+                    <p className="lead"> Undergraduate Computer Science student of University of California, Santa Barbara.  <br></br>Learn more about me and my experience with Full-Stack Web Development here.</p>
                     <br />
                     <br />
                     <a href="/about" className="btn btn-large welcome-btn-secondary btn-secondary font-weight-bold">About Me</a>
