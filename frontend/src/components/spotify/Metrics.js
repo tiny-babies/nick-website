@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import {ButtonGroup } from 'reactstrap';
-// import TracksFeaturesChart from './TracksFeaturesChart';
 import BarChart from './BarChart';
 import '../../styles/Spotify.css'
 
@@ -150,14 +149,19 @@ class Metrics extends React.Component{
 
 
                         {this.state.topTracksData.length && (
-                            <BarChart
-                            key={this.state.topTracksData}
-                            trackData={this.state.topTracksData}
-                        />
+                            <div>
+                                <h1 className="home-h1" style={{
+                                margin: '50px'
+                                 }}>Your Type of Songs</h1>
+                                 <h3 className="home-h3">According to the top 50 songs you've listened to the past 6 months.</h3>
+                                <BarChart
+                                key={this.state.topTracksData}
+                                trackData={this.state.topTracksData}
+                                />
+                            </div>
+                        
                         )}
                         
-
-
 
 
                     <h1 className="home-h1" style={{
