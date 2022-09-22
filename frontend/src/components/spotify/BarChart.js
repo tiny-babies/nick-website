@@ -62,7 +62,12 @@ class BarChart extends React.Component {
     
 
     render(){
-        return <BarChartRender data={this.data}/>
+        if(this.data){
+            return <BarChartRender data={this.data}/>
+        }
+        
+        else
+        return <h1 className="home-h1">Loading...</h1>
     }
 }
 

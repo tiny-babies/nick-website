@@ -2,8 +2,10 @@ import React from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import {ButtonGroup } from 'reactstrap';
-import BarChart from './BarChart';
 import '../../styles/Spotify.css'
+import BarChart from './BarChart';
+import TopCategories from './TopCategories';
+
 
 class Metrics extends React.Component{
     constructor(props){
@@ -13,7 +15,8 @@ class Metrics extends React.Component{
             topArtists: [],
             topTracks: [],
             topTracksData: [],
-            rSelected: "medium_term"
+            topTracksDataEach: [],
+            rSelected: "short_term"
         };
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
     }
@@ -51,6 +54,7 @@ class Metrics extends React.Component{
             }
         });
         // console.log(res.data)
+        this.setState({ topTracksDataEach: res.data });
        
         let map = new Map([
             ['acousticness', 0],
@@ -139,6 +143,7 @@ class Metrics extends React.Component{
             <React.Fragment>
                 <div className="app-body-container">
                     <div className="App-body">
+
                         <Button
                             className="submit-button"
                             variant="danger"
@@ -147,38 +152,56 @@ class Metrics extends React.Component{
                             Logout
                         </Button>
 
-
-                        {this.state.topTracksData.length && (
-                            <div>
-                                <h1 className="home-h1" style={{
-                                margin: '50px'
-                                 }}>Your Type of Songs</h1>
-                                 <h3 className="home-h3">According to the top 50 songs you've listened to the past 6 months.</h3>
-                                <BarChart
-                                key={this.state.topTracksData}
-                                trackData={this.state.topTracksData}
-                                />
-                            </div>
-                        
-                        )}
-                        
-
-
-                    <h1 className="home-h1" style={{
-                        margin: '50px'
-                    }}>Your Top Artists</h1>
+                        <h1 className="home-h1" style={{
+                            margin: '50px'
+                        }}>Your Top Artists</h1>
                         <ButtonGroup className='mb-5'>
                             <Button variant="outline-warning" onClick={() => this.onRadioBtnClick("short_term")} active={this.state.rSelected === "short_term"}>One Month</Button>
                             <Button variant="outline-warning" onClick={() => this.onRadioBtnClick("medium_term")} active={this.state.rSelected === "medium_term"}>Six Months</Button>
                             <Button variant="outline-warning" onClick={() => this.onRadioBtnClick("long_term")} active={this.state.rSelected === "long_term"}>All Time</Button>
                         </ButtonGroup>
-                    <div id="artost-list">
-                    {results.length ? (
-                        results
-                    ) : (
-                        <h1 className="home-h1">NO RESULTS</h1>
-                    )}
-                </div>
+                        <div id="artist-list">
+                            {results.length ? (
+                                results
+                            ) : (
+                                <h1 className="home-h1" style={{
+                                    height: '100vh'
+                                }}>NO RESULTS</h1>
+                            )}
+                        </div>
+
+                        
+
+                            {!this.state.topTracksData.length && (
+                                <h1 className="home-h1">Loading...</h1>
+                            )}
+                            {this.state.topTracksData.length != 0 && (
+                                <div>
+                                    <h1 className="home-h1" style={{
+                                    margin: '50px'
+                                    }}>Your Type of Songs</h1>
+                                    <h3 className="home-h3">According to the top 50 songs you've listened to the past 6 months.</h3>
+                                    <BarChart
+                                    key={this.state.topTracksData}
+                                    trackData={this.state.topTracksData}
+                                    />
+                                </div>
+                        
+                              )} 
+
+
+                        <TopCategories
+                            key={this.state.topTracksData}
+                            topTracksData={this.state.topTracksData}
+                            topTracksDataEach={this.state.topTracksDataEach}
+                            topTracks={this.state.topTracks}
+                        />
+
+                       
+                        
+
+
+                    
 
                 </div>
                 </div>
