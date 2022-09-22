@@ -94,12 +94,13 @@ h2.app-head-text{
   display: flex;
   flex-direction: column;
   color: white;
+  
 
 }
 
 
 
-.my-info {
+.personal-card {
   background-color: white;
   border-radius: 12px;
   margin: auto;
@@ -114,7 +115,7 @@ h2.app-head-text{
   color: #121212;
 }
 
-.app-selfie{
+.personal-card-img{
   background-image: url("https://res.cloudinary.com/dlvlvxbxh/image/upload/v1662959478/personalWebsite/IMG_0136_eefrim.jpg");
   background-size: cover;
   background-position: center;
@@ -126,19 +127,19 @@ h2.app-head-text{
   border-radius: 50px;
 }
 
-.app-intro{
+.personal-card-info{
   text-align: center;
   margin-right: 3em;
   margin-left: auto;
   width: 50%;
 }
 
-.app-intro > h1{
+.personal-card-info > h1{
   font-size: 1.5em;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
-.app-intro > h2{
+.personal-card-info > h2{
     font-size: 1.2em;
     font-family: 'Montserrat', sans-serif;
     
@@ -408,18 +409,18 @@ h2.app-head-text{
   .App-body{
     width: 95%;
   }
-  .app-selfie{
+  .personal-card-img{
     margin-left: 4%;
   }
-  .app-intro{
+  .personal-card-info{
     margin-right: 4%;
   }
-  .app-intro>h1 {
+  .personal-card-info>h1 {
       font-size: 24px;
 
     }
   
-  .app-intro>h2 {
+  .personal-card-info>h2 {
       font-size: 20px;
   
     }
@@ -500,7 +501,7 @@ h2.app-head-text{
     font-size: 2.5em;
   }
 
-  .my-info{
+  .personal-card{
     padding: 30px 10px 30px 10px;
     display: flex;
     flex-direction: column;
@@ -508,25 +509,25 @@ h2.app-head-text{
     height:auto;
   }
 
-  .app-selfie {
+  .personal-card-img {
     margin:auto;
     height: 400px;
     width: 350px;
   }
 
-  .app-intro {
+  .personal-card-info{
     margin:auto;
     margin-top: 20px;
     width: auto;
 
   }
 
-  .app-intro>h1 {
+  .personal-card-info>h1 {
     font-size: 20px;
 
   }
 
-  .app-intro>h2 {
+  .personal-card-info>h2 {
     font-size: 16px;
 
   }
@@ -604,27 +605,27 @@ h2.app-head-text{
 
 
 
-  .my-info {
+  .personal-card {
     padding: 20px 5px 20px 5px;
   }
 
-  .app-selfie {
+  .personal-card-img {
     height: 95vw;
     width: 85vw;
   }
 
-  .app-intro {
+  .personal-card-info {
     margin-top: 15px;
 
 
   }
 
-  .app-intro>h1 {
+  .personal-card-info>h1 {
     font-size: 18px;
 
   }
 
-  .app-intro>h2 {
+  .personal-card-info>h2 {
     font-size: 14px;
 
   }

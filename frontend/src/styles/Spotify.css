@@ -1,0 +1,38 @@
+
+
+.artist-card > .home-h1{
+    display: inline-block;
+    margin: 0.5em;
+    width: 5vw;
+}
+
+.artist-card{
+    width: 100%;
+    height: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist-card>.home-h1 {
+    display: inline-block;
+    margin: 10px;
+    width: 5vw;
+}
+
+.artist-img{
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    border-radius: 25%;
+}
+.artist-info{
+    display: inline-block;
+    width: 30vw;
+    margin: 50px;
+    color: white;
+    justify-content: center;
+}
