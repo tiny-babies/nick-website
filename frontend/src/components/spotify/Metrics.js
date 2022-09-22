@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import {ButtonGroup } from 'reactstrap';
-import TracksFeaturesChart from './TracksFeaturesChart';
+// import TracksFeaturesChart from './TracksFeaturesChart';
+import BarChart from './BarChart';
 import '../../styles/Spotify.css'
 
 class Metrics extends React.Component{
@@ -148,27 +149,13 @@ class Metrics extends React.Component{
                         </Button>
 
 
-
-
-
-
-
-
-
-
-
-
-
-                        <TracksFeaturesChart 
+                        {this.state.topTracksData.length && (
+                            <BarChart
                             key={this.state.topTracksData}
                             trackData={this.state.topTracksData}
                         />
-
-
-
-
-
-
+                        )}
+                        
 
 
 

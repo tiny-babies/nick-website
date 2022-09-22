@@ -1,121 +1,121 @@
 import React from "react";
-import Chart from "chart.js/auto"
+import { Bar } from "react-chartjs-2";
 
 class TrackFeaturesChart extends React.Component {
     constructor(props){
         super(props);
         this.chartRef = React.createRef();
-        this.state= {
-            formattedData: {
-                fLabels: ['January', 'February', 'March',
-                    'April', 'May'],
-                fDatasets: [
-                    {
-                        label: 'Rainfall',
-                        backgroundColor: 'rgba(75,192,192,1)',
-                        borderColor: 'rgba(0,0,0,1)',
-                        borderWidth: 2,
-                        data: [65, 59, 80, 81, 56]
-                    }
-                ]
-            }
+
+        this.state = {
+            chartData: [],
         }
+
+        // this.state= {
+        //     formattedData: {
+        //         fLabels: [],
+        //         fDatasets: [
+        //             {
+        //                 label: '',
+        //                 label: 'Moods',
+        //                 data: [],
+        //                 backgroundColor: [
+        //                     'rgba(255, 99, 132, 0.2)',
+        //                     'rgba(255, 159, 64, 0.2)',
+        //                     'rgba(255, 205, 86, 0.2)',
+        //                     'rgba(75, 192, 192, 0.2)',
+        //                     'rgba(54, 162, 235, 0.2)',
+        //                     'rgba(153, 102, 255, 0.2)',
+        //                     'rgba(201, 203, 207, 0.2)'
+        //                 ], borderColor: [
+        //                     'rgb(255, 99, 132)',
+        //                     'rgb(255, 159, 64)',
+        //                     'rgb(255, 205, 86)',
+        //                     'rgb(75, 192, 192)',
+        //                     'rgb(54, 162, 235)',
+        //                     'rgb(153, 102, 255)',
+        //                     'rgb(201, 203, 207)'
+        //                 ],
+        //                 borderWidth: 1
+        //             }
+        //         ]
+        //     }
+        // }
     }
 
     componentDidMount(){
         const trackData  = this.props.trackData;
         // console.log(trackData);
-        let labels = [];
+        let tlabels = [];
         let dataList = [];
 
         for (let i = 0; i < trackData.length; i++){
-            labels.push(trackData[i].key);
+            tlabels.push(trackData[i].key);
             dataList.push(trackData[i].value);
         }
-        console.log(labels)
+        console.log(tlabels)
         console.log(dataList)
         dataList = dataList.map((item) => Math.round(item));
 
-        let dataSets = [
-            {
-                label: 'Moods',
-                data: dataList,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(201, 203, 207, 0.2)'
-                ], borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgb(201, 203, 207)'
-                ],
-                borderWidth: 1
+        let tchartData = {
+            labels: tlabels,
+            datasets: [
+                {
+                    label: 'Moods',
+                    data: dataList,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ], borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1
 
-            }
-        ]
-
-        let totalData = {
-            labels,
-            dataSets
+                }
+            ]
         }
 
         this.setState({
-            formattedData: totalData
-        })
+            chartData: tchartData
+        }, () => {
+            console.log(this.state.chartData);
 
-        if(this.state.theChart){
-            this.state.theChart.destroy();
-        }
-        let theChart = new Chart(this.chartRef.current, {
-            type: "bar",
-            data: this.state.formattedData,
-            options: {
-                legend: {
-                    position: "bottom",
-                },
-                responsive: true,
-                maintainAspectRatio: false,
-                tooltips: {
-                    callbacks: {
-                        label: function (tooltipItem, data) {
-                            return (
-                                data["labels"][tooltipItem["index"]] +
-                                ": " +
-                                data["datasets"][0]["data"][tooltipItem["index"]] +
-                                "%"
-                            );
-                        },
-                    }
-                },
-
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            },
         });
 
-        this.setState({
-            theChart
-        })
-
-        
-
     }
+
 
     render() {
         return(
             <div>
-               <canvas ref={this.chartRef} id="trackChart"></canvas>
+            {this.state.chartData.hasOwnProperty("labels") && (
+                <Bar
+              data={this.state.chartData}
+                    options={{
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: "Cryptocurrency prices"
+                            },
+                            legend: {
+                                display: true,
+                                position: "bottom"
+                            }
+                        }
+                    }}
+              />
+            )}
+              
             </div>
             
         );
