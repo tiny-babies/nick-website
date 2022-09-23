@@ -4,46 +4,116 @@ class TopCategories extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            topCategory: "",
+            category: 1,
             songList: [],
         }
 
+        this.dropDownChange = this.dropDownChange.bind(this);
         
     }
 
-    setSongListCategory(category){
-        
-    }
+
 
     componentDidMount() {
 
+        // let maxVal = 0;
+        // let topCategory = "acousticness";
+        // let topCategoryIndex = 1;
+        // for (topCategoryIndex; topCategoryIndex < this.props.topTracksData.length; topCategoryIndex++) {
+        //     if (this.props.topTracksData[topCategoryIndex].value > maxVal) {
+        //         topCategory = this.props.topTracksData[topCategoryIndex].key;
+        //         maxVal = this.props.topTracksData[topCategoryIndex].value;
+        //     }
+        // }
+
+        let categoryName="acousticness"
         let maxVal = 0;
-        let topCategory = "acousticness";
-        for (let i = 1; i < this.props.topTracksData.length; i++) {
-            if (this.props.topTracksData[i].value > maxVal) {
-                topCategory = this.props.topTracksData[i].key;
-                maxVal = this.props.topTracksData[i].value;
-            }
+
+        if(this.state.category < this.props.topTracksData.length){
+            categoryName = this.props.topTracksData[this.state.category].key;
+            maxVal = this.props.topTracksData[this.state.category].value;
         }
-        console.log(maxVal, topCategory);
-        this.setState({
-            topCategory,
-        })
+
+        if (categoryName === "speechiness"){
+            maxVal = maxVal / 3;
+        }
+        if (categoryName === "instrumentalness") {
+            maxVal = maxVal / 2;
+        }
+
+
+        // console.log(maxVal, topCategory);
+        // this.setState({
+        //     topCategory,
+        //     topCategoryIndex,
+        // })
 
         let songList = [];
 
         for (let i = 0; i < this.props.topTracksDataEach.length; i++) {
-            console.log(this.props.topTracks[i]);
-            if (this.props.topTracksDataEach[i][topCategory] >= maxVal/50) {
+            // console.log(this.props.topTracks[i]);
+            if (this.props.topTracksDataEach[i][categoryName] >= maxVal/50) {
                 songList.push(this.props.topTracks[i]);
             }
-            if(songList.length == 10) break;
+            if(songList.length === 10) break;
         }
         console.log(songList);
         this.setState({
             songList,
         })
     }
+    
+
+    dropDownChange(event){
+        this.setState({
+            category: event.target.value,
+            songList: [],
+        });
+        let updateSongList = this.songListUpdate(event.target.value);
+        // console.log(updateSongList);
+        this.setState({
+            songList: updateSongList,
+        })
+
+    }
+
+    songListUpdate(category){
+
+        let categoryName = "acousticness"
+        let maxVal = 0;
+
+        if (this.state.category < this.props.topTracksData.length) {
+            categoryName = this.props.topTracksData[category].key;
+            maxVal = this.props.topTracksData[category].value;
+        }
+
+
+        if (categoryName === "speechiness") {
+            maxVal = maxVal / 3;
+        }
+        if (categoryName === "instrumentalness") {
+            maxVal = maxVal / 2;
+        }
+
+
+
+        let songList = [];
+
+        for (let i = 0; i < this.props.topTracksDataEach.length; i++) {
+            
+            if (this.props.topTracksDataEach[i][categoryName] >= maxVal / 50) {
+                songList.push(this.props.topTracks[i]);
+
+            }
+            if (songList.length === 10) break;
+        }
+
+        return songList;
+    }
+
+    
+
+
 
     render(){
 
@@ -55,8 +125,9 @@ class TopCategories extends React.Component{
                 <span className="artist-img" style={{
                     backgroundImage: "url(" + song.album.images[0].url + ")"
                 }}></span>
-                <span className="home-h2 artist-info">
-                    {song.name}
+                <span className="artist-info">
+                    <div className="song-name">{song.name}</div>
+                    <div className="song-artist">{song.artists[0].name}</div>
                 </span>
             </div>
         ))
@@ -67,15 +138,22 @@ class TopCategories extends React.Component{
             
 
             <div>
-                <h2 className="home-h2">
-                    Your Top Category is: {this.state.topCategory.toUpperCase()}
-                </h2>
                 
                 <h2 className="home-h2">
-                    Here are your top songs in {this.state.topCategory.toUpperCase()}...
+                    Here are your top songs in... 
                 </h2>
+                <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={this.dropDownChange} value={this.state.category}>
+                    <option value={1}>Acousticness</option>
+                    <option value={2}>Danceability</option>
+                    <option value={3}>Energy</option>
+                    <option value={4}>Instrumentalness</option>
+                    <option value={5}>Speechiness</option>
+                    <option value={6}>Valence</option>
+                </select>
 
-                <div id="artist-list">
+                <div 
+                key={this.state.category}
+                id="artist-list">
                     {results.length ? (
                         results
                     ) : (
