@@ -57,7 +57,7 @@ class TopCategories extends React.Component{
             }
             if(songList.length === 10) break;
         }
-        console.log(songList);
+        // console.log(songList);
         this.setState({
             songList,
         })

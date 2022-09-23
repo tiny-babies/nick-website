@@ -21,11 +21,14 @@ import se.michaelthelin.spotify.model_objects.credentials.AuthorizationCodeCrede
 import se.michaelthelin.spotify.model_objects.specification.Artist;
 import se.michaelthelin.spotify.model_objects.specification.AudioFeatures;
 import se.michaelthelin.spotify.model_objects.specification.Paging;
+import se.michaelthelin.spotify.model_objects.specification.PagingCursorbased;
+import se.michaelthelin.spotify.model_objects.specification.PlayHistory;
 import se.michaelthelin.spotify.model_objects.specification.Track;
 import se.michaelthelin.spotify.requests.authorization.authorization_code.AuthorizationCodeRequest;
 import se.michaelthelin.spotify.requests.authorization.authorization_code.AuthorizationCodeUriRequest;
 import se.michaelthelin.spotify.requests.data.personalization.simplified.GetUsersTopArtistsRequest;
 import se.michaelthelin.spotify.requests.data.personalization.simplified.GetUsersTopTracksRequest;
+import se.michaelthelin.spotify.requests.data.player.GetCurrentUsersRecentlyPlayedTracksRequest;
 import se.michaelthelin.spotify.requests.data.tracks.GetAudioFeaturesForSeveralTracksRequest;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -67,7 +70,7 @@ public class SpotifyController {
         .build();
 
         AuthorizationCodeUriRequest authorizationCodeUriRequest = spotifyApi.authorizationCodeUri()
-            .scope("user-read-private, user-read-email, user-top-read")
+            .scope("user-read-private, user-read-email, user-top-read, user-read-recently-played")
             .show_dialog(true)
             .build();
 
@@ -126,6 +129,24 @@ public class SpotifyController {
         }
 
         return new Artist[0];
+
+    }
+
+    @GetMapping("/recent-tracks")
+    public PlayHistory[] getUserRecentTracks() {
+
+        final GetCurrentUsersRecentlyPlayedTracksRequest getCurrentUsersRecentlyPlayedTracksRequest = spotifyApi.getCurrentUsersRecentlyPlayedTracks()
+                .limit(50)
+                .build();
+        try {
+            final PagingCursorbased<PlayHistory> trackPaging = getCurrentUsersRecentlyPlayedTracksRequest.execute();
+
+            return trackPaging.getItems();
+        } catch (Exception e) {
+            System.out.println("Something went wrong!\n" + e.getMessage());
+        }
+
+        return new PlayHistory[0];
 
     }
 

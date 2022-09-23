@@ -21,6 +21,12 @@ class Metrics extends React.Component{
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
     }
 
+    async getUserRecentlyPlayed(){
+        const response = await axios.get("http://localhost:8080/api/spotify/recent-tracks")
+        console.log(response.data);
+        return response.data;
+    }
+
     async getUserTopArtists(rSelected){
         const response = await axios.get("http://localhost:8080/api/spotify/top-artists?time_range=" + rSelected);
         // console.log(response.data);
@@ -96,6 +102,7 @@ class Metrics extends React.Component{
     async componentDidMount(){
         const resTopTracksData = await this.getTopTrackData();
         const resTopArtists = await this.getUserTopArtists(this.state.rSelected);
+        const resRecentlyPlayed = await this.getUserRecentlyPlayed();
         this.setState({
             topArtists: resTopArtists,
             topTracksData: resTopTracksData,

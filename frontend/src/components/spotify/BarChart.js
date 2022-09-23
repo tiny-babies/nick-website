@@ -26,7 +26,7 @@ class BarChart extends React.Component {
             dataList.push(trackData[i].value);
         }
 
-        console.log(dataList)
+        // console.log(dataList)
         dataList = dataList.map((item) => Math.round(item) * 2);
 
         this.data = {
