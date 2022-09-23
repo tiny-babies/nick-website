@@ -3,6 +3,7 @@ import Login from '../components/spotify/Login';
 import Metrics from '../components/spotify/Metrics';
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import AppNavbar from '../components/AppNavbar';
 
 
 
@@ -18,19 +19,33 @@ class Spotify extends React.Component {
 
 
     componentDidMount(){
-        fetch("api/spotify/auth-token")
+        // let jsonRes, textRes;
+            fetch("api/spotify/auth-token")
             .then(response => response.text())
             .then(response => {
-                this.setState({
-                    token: response
+                console.log(response)
+                if(!response.length ||  response.indexOf("status") >= 0){
+                
+                    this.setState({
+                        token: null,
+                    })
+                } else {
+
+                    this.setState({
+                    token: response,
                 });
+                }
+                
             });
+        
+        
     }
 
 
     async logout() {
         this.setState({
-            token: null
+            token: null,
+            isLoggedIn: false,
         });
         await axios.post("http://localhost:8080/api/spotify/logout");
         
@@ -54,6 +69,8 @@ class Spotify extends React.Component {
     render(){
         return(
             <div>
+                <AppNavbar/>
+                <div className="app-top-margin"></div>
                 {!this.state.token && (
 
                     

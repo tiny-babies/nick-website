@@ -16,16 +16,16 @@ const AppNavbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link app-nav-item" id="app-nav-home" href="#home-top">Home </a>
+                            <a className="nav-link app-nav-item" id="app-nav-home" href="/#home-top">Home </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link app-nav-item" id="app-nav-resume" href="#home-resume">Resume</a>
+                            <a className="nav-link app-nav-item" id="app-nav-resume" href="/#home-resume">Resume</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link app-nav-item" id="app-nav-portfolio" href="#home-projects">Portfolio</a>
+                            <a className="nav-link app-nav-item" id="app-nav-portfolio" href="/#home-projects">Portfolio</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link app-nav-item" id="app-nav-contact" href="#home-contact">Contact</a>
+                            <a className="nav-link app-nav-item" id="app-nav-contact" href="/#home-contact">Contact</a>
                         </li>
                     </ul>
 

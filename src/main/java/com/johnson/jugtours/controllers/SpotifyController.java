@@ -85,6 +85,14 @@ public class SpotifyController {
         spotifyApi.setRefreshToken(null);
     }
 
+    // Must handle access_denied redirect after login
+    // @GetMapping(value = "/spotify-auth?error=access_denied")
+    // public void redirectAccessDeniedLogin(HttpServletResponse response) throws IOException {
+
+    //     response.sendRedirect("http://localhost:3000/spotify");
+
+    // }
+
     @GetMapping(value = "/spotify-auth")
     public String getSpotifyUserCode(@RequestParam("code") String userCode, HttpServletResponse response) throws IOException{
         code = userCode;
@@ -105,6 +113,7 @@ public class SpotifyController {
         return spotifyApi.getAccessToken();
 
     }
+
 
     @GetMapping("/auth-token")
     public String getAuthToken() {
