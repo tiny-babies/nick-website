@@ -82,6 +82,11 @@
             <artifactId>spring-cloud-gateway-mvc</artifactId>
             <version>3.0.1</version>
         </dependency>
+		 <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
 
 	</dependencies>
