@@ -12,7 +12,7 @@ class PieChart extends React.Component {
 
         const artists = this.props.artists;
 
-        let map = new Map;
+        let map = new Map();
         let grossGenres = 0;
         artists.forEach((artist) =>{
             // console.log(artist.genres);

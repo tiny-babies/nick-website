@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Login from '../components/spotify/Login';
 import Metrics from '../components/spotify/Metrics';
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 import AppNavbar from '../components/AppNavbar';
 
