@@ -2,6 +2,9 @@ import React from 'react';
 import '../styles/App.css';
 import logo from '../styles/logo.svg';
 import AppNavbar from '../components/AppNavbar';
+import pieChartPic from '../styles/PieChartEx.png';
+import barChartPic from '../styles/BaChartEx.png';
+import courseListPic from '../styles/courseListEx.png'
 import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 
 
@@ -53,16 +56,40 @@ const Home = () => {
                         <a className="resume-link" href="/spotify">Spotify Analysis App </a>
                         <br></br>
                         This app allows a user to log into their Spotify account to see statistics about the songs that they listen to. I developed a Spring-Boot back-end that uses RESTful endpoints with the Spotify Web API.  I also developed the React front-end that consumes REST API from the Spring-Boot endpoints using Axios.  I created React components that compute additional insight into the Spotify song statistics, and I designed React pages and components to display the Spotify information with the help of Bootstrap and Chart.js. 
+                        </h3>
+                    <div className="website-info">
+                            <img src={pieChartPic} alt="img"  style={{width: "50%",}}></img>
+                        <img src={barChartPic} alt="img" style={{width: "50%",}}></img>
+      
+                    </div>
+
+                    <h3 className="home-h3">
                         <br></br>
                         <br></br>
                         <a className="resume-link" href="https://github.com/ucsb-cs156-w22/team04-w22-5pm-courses" target="_blank" rel="noopener noreferrer">Course-Search Web App: </a>
                         <br></br>
                         Team-based project for CS156: Advanced Applications Programming.  Simulated an Agile Environment with extensive GitHub work.  I developed back-end API endpoints to establish CRUD operations with MongoDB to store the users' course schedule data.  I helped create the API endpoint used to query for all courses at UC Santa Barbara.  The back-end was done in with Spring-Boot with Pitest and JUnit testing.  In the front-end, I created React components that consumes the RESTful API endpoints to the back-end to create pages for listing and creating student schedules.  Front-End testing was done with Jest and mutation testing with Stryker.  Class Grade: A+. (WINTER 2022)
+                        </h3>
+
+                    <div className="website-info">
+                        <img src={courseListPic} alt="img" style={{ width: "50%", }}></img>
+       
+
+                    </div>
+
+                        <h3 className="home-h3">
                         <br></br>
                         <br></br>
                         <a className="resume-link" href="https://github.com/tiny-babies/YelpCamp" target="_blank" rel="noopener noreferrer">Yelp-Camp: </a>
                         <br></br>
                         Following Colt Steele's Web Developer BootCamp course, I created a mimic of a campsite-rating app with Express/ejs, Node.js, and MongoDB.
+                        </h3>
+                        <div className="website-info">
+                            <img src="https://user-images.githubusercontent.com/91104605/154908871-31ced5e6-c535-475b-8de0-bffae6df44dd.png" alt="img" style={{ width: "50%", }}></img>
+                            <img src="https://user-images.githubusercontent.com/91104605/154909027-deb11710-7ff9-47c3-86d4-ff7505c1c35a.png" alt="img" style={{ width: "50%", }}></img>
+                        </div>
+
+                        <h3 className="home-h3">
                         <br></br>
                         <br></br>
                         <b>VIDEO GAME DEVELOPMENT:</b>
@@ -71,9 +98,16 @@ const Home = () => {
                         <a className="resume-link" href="https://github.com/tiny-babies/VaxMan" target="_blank" rel="noopener noreferrer">Vax-Man: </a>
                         <br></br>
                         Used Python PyGame to code multiple versions of Pac-Man.  Rendered my own map, enemy AI, and game logic using Python.
+                        </h3>
+                    <div className="website-info">
+                        <img src="https://user-images.githubusercontent.com/91104605/154907911-c621400b-da7e-4d53-b98c-f822643d8571.png" alt="img" style={{ width: "50%", }}></img>
+
+                    </div>
+                        <h3 className="home-h3">
                         <br />
                         <br />
                         <u>2D Strategy War-Game (in development) using Godot Engine</u> - I created a map and grid of tile objects that record the state of the game and the army troops in each tile.  I made the scripts for loading graphics into each tile.  I created the UI for possible player actions and the game manager scripts to move army troops from tile to tile.
+
                         <br />
                         <br />
                         <b>SCHOOL PROJECTS:</b>
