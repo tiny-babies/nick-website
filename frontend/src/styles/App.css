@@ -20,9 +20,15 @@
 
 }
 
+.ml-auto{
+  display:flow-root;
+  margin-left: auto;
+
+}
+
 #app-nav-home {
   transition-property: text-shadow;
-  transition-duration: 1s;
+  transition-duration: .7s;
   transition-delay: 0s;
 }
 #app-nav-home:hover {
@@ -37,7 +43,7 @@
 
 #app-nav-resume{
   transition-property: text-shadow;
-  transition-duration: 1s;
+  transition-duration: .7s;
   transition-delay: 0s;
 }
 #app-nav-resume:hover {
@@ -47,7 +53,7 @@
 
 #app-nav-portfolio {
     transition-property: text-shadow;
-      transition-duration: 1s;
+      transition-duration: .7s;
       transition-delay: 0s;
 
 }
@@ -61,13 +67,24 @@
 
 #app-nav-contact {
       transition-property: text-shadow;
-      transition-duration: 1s;
+      transition-duration: .7s;
       transition-delay: 0s;
 }
 
 #app-nav-contact:hover{
       text-shadow: 0 0 30px #25d366,
           0 0 50px #48ee85, 0 0 70px #0ec0a5
+}
+
+#app-nav-spotify {
+  transition-property: text-shadow;
+  transition-duration: .7s;
+  transition-delay: 0s;
+}
+
+#app-nav-spotify:hover {
+  text-shadow: 0 0 30px #25d366,
+    0 0 50px #48ee85, 0 0 70px #0ec0a5
 }
 
 .app-nav-item {
@@ -259,6 +276,7 @@ h2.app-head-text{
 
 
 
+
 .website-info{
 
   margin-top: 2vh;
@@ -339,7 +357,7 @@ h2.app-head-text{
   width: 80%;
   border-radius: 15px;
       height: 40vh;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(7, 7, 7, 0.1)), url("https://images.unsplash.com/photo-1540840430747-71880eb5b5ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2MzE3MjA5MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080");
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(7, 7, 7, 0.2)), url("https://images.unsplash.com/photo-1540840430747-71880eb5b5ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2MzE3MjA5MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080");
         background-size: cover;
         background-position: center;
 }
@@ -503,11 +521,9 @@ h2.app-head-text{
   }
 
   .contact{
-    font-size: 2.5vw;
+    font-size: 15px;
   }
-  #contact-list>li{
-    font-size: 2.5vw !important;
-  }
+
 
 
 
@@ -585,24 +601,25 @@ h2.app-head-text{
     font-size: 16px;
   }
     #react-title-holder{
-      margin-left: 35%;
+      margin: auto;
     }
     #react-info-title {
       
-       font-size: 4vw;
+       /* font-size: 4vw; */
      }
   
      .App-logo {
-       height: 7vw;
+       height: 70px;
      }
   
      #spring-info-title {
-       font-size: 4vw;
+       /* font-size: 4vw; */
      }
   
      .website-info-text {
-       font-size: 2vw;
+       /* font-size: 2vw; */
        line-height: 30px;
+       height: 20vh;
      }
   
      .website-info-box {
@@ -613,6 +630,10 @@ h2.app-head-text{
      .website-info{
       display: flex;
       flex-direction: column;
+     }
+
+     .contact{
+      height: auto;
      }
 
 

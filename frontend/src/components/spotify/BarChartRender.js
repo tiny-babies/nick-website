@@ -23,7 +23,7 @@ if (window.matchMedia('(max-device-width: 960px)').matches){
     defaults.font.size = '15'
 }
 
-export const options = {
+const options = {
     scales: {
         yAxes: {
             ticks: {

@@ -7,9 +7,6 @@ import { BarChartRender } from './BarChartRender';
 const labels = ['Popularity', 'Acousticness', 'Denceability', 'Energy', 'Instrumentalness', 'Speechiness', 'Valence'];
 
 
-export const data = {
-    
-}
 
 class BarChart extends React.Component {
     constructor(props) {

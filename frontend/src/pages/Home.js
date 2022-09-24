@@ -43,16 +43,21 @@ const Home = () => {
                     <h3 className="home-h3">
                         <b>GPA: 3.92</b>
                         <br />
-                        Advanced Applications Programming, Operating Systems, Automata and Formal Languages, Computer Communication Networks, Advanced Data Structures and Algorithms, Intro to Computational Science, Computer Architecture, Advanced Object Oriented Design C++, Intro to Computer Vision, Linear Algebra, Probability and Statistics, Differential Equations
+                        Advanced Applications Programming, Advanced Object Oriented Design C++, Operating Systems,  Computer Communication Networks, Advanced Data Structures and Algorithms, Automata and Formal Languages, Intro to Computational Science, Computer Architecture,  Intro to Computer Vision, Linear Algebra, Probability and Statistics, Differential Equations
                     </h3>
                     <h2 className="home-h2" id="home-projects">PROJECTS:</h2>
                     <h3 className="home-h3">
                         <b>WEB DEVELOPMENT:</b>
                         <br />
                         <br />
+                        <a className="resume-link" href="/spotify">Spotify Analysis App </a>
+                        <br></br>
+                        This app allows a user to log into their Spotify account to see statistics about the songs that they listen to. I developed a Spring-Boot back-end that uses RESTful endpoints with the Spotify Web API.  I also developed the React front-end that consumes REST API from the Spring-Boot endpoints using Axios.  I created React components that compute additional insight into the Spotify song statistics, and I designed React pages and components to display the Spotify information with the help of Bootstrap and Chart.js. 
+                        <br></br>
+                        <br></br>
                         <a className="resume-link" href="https://github.com/ucsb-cs156-w22/team04-w22-5pm-courses" target="_blank" rel="noopener noreferrer">Course-Search Web App: </a>
                         <br></br>
-                        Team-based project for CS156: Advanced Applications Programming.  Simulated an Agile Environment with extensive GitHub work.  I developed a couple back-end API endpoints to establish CRUD operations with MongoDB to store the users' course schedule data.  I helped create the API endpoint used to query for all courses at UC Santa Barbara.  The back-end was done in with Spring-Boot with Pitest and JUnit testing.  In the front-end, I created React components that established RESTful API endpoints to the backend to create pages for listing and creating student schedules.  Front-End testing was done with Jest and mutation testing with Stryker.  Class Grade: A+. (WINTER 2022)
+                        Team-based project for CS156: Advanced Applications Programming.  Simulated an Agile Environment with extensive GitHub work.  I developed back-end API endpoints to establish CRUD operations with MongoDB to store the users' course schedule data.  I helped create the API endpoint used to query for all courses at UC Santa Barbara.  The back-end was done in with Spring-Boot with Pitest and JUnit testing.  In the front-end, I created React components that consumes the RESTful API endpoints to the back-end to create pages for listing and creating student schedules.  Front-End testing was done with Jest and mutation testing with Stryker.  Class Grade: A+. (WINTER 2022)
                         <br></br>
                         <br></br>
                         <a className="resume-link" href="https://github.com/tiny-babies/YelpCamp" target="_blank" rel="noopener noreferrer">Yelp-Camp: </a>
@@ -65,16 +70,16 @@ const Home = () => {
                         <br />
                         <a className="resume-link" href="https://github.com/tiny-babies/VaxMan" target="_blank" rel="noopener noreferrer">Vax-Man: </a>
                         <br></br>
-                        Used Python PyGame to code multiple versions of Pac-Man.  Rendered my own map, enemy AI, and game logic.
+                        Used Python PyGame to code multiple versions of Pac-Man.  Rendered my own map, enemy AI, and game logic using Python.
                         <br />
                         <br />
-                        2D Strategy War-Game (in development) using Godot Engine - I created a map and grid of tile objects to record the state of the game and the army troops in each tile.  I made the scripts for loading graphics into each tile.  I created the UI for possible player actions and the game manager scripts to move army troops from tile to tile.
+                        <u>2D Strategy War-Game (in development) using Godot Engine</u> - I created a map and grid of tile objects that record the state of the game and the army troops in each tile.  I made the scripts for loading graphics into each tile.  I created the UI for possible player actions and the game manager scripts to move army troops from tile to tile.
                         <br />
                         <br />
                         <b>SCHOOL PROJECTS:</b>
                         <br />
                         <br />
-                        CS 170: Operating Systems - Created an operating system that handled simple unix system calls using multi-threading, memory management, and interrupt/error handling in MIPS simulated hardware. (SPRING 2022)
+                        <u>CS 170: Operating Systems</u> - Created an operating system that handles simple unix system calls using multi-threading, memory management, and interrupt/error handling in MIPS simulated hardware.  Class Grade: A. (SPRING 2022)
 
 
                     </h3>
@@ -101,14 +106,14 @@ const Home = () => {
                                 <h1 id="react-info-title">React.js</h1>
                             </div>
 
-                            <h2 className="website-info-text">Front-End pages and components created using React, and the css was done with my own stylesheet with a little help from Bootstrap. </h2>
+                            <h2 className="website-info-text">Front-End pages and components created using React and Bootstrap.  Axios used to consume REST API from the backend.</h2>
                         </div>
                         <div className="website-info-box">
                             <div id="spring-info-title">
                                 Spring-Boot
                             </div>
                             <div className="website-info-text">
-                                Back-End made with Spring-Boot where I established some fun endpoints to a few public APIs to create a couple of my favorite projects.
+                                Back-End made with Spring-Boot to develop simple REST API endpoints with some fun public APIs such as with Spotify.
                             </div>
                         </div>
 
@@ -136,6 +141,9 @@ const Home = () => {
 
 
                         </ul>
+                        <br></br>
+                        Santa Barbara, 93117 <br/>
+                        California, USA
                     </div>
 
 

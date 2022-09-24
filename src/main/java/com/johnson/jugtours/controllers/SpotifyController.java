@@ -24,12 +24,16 @@ import se.michaelthelin.spotify.model_objects.specification.Paging;
 import se.michaelthelin.spotify.model_objects.specification.PagingCursorbased;
 import se.michaelthelin.spotify.model_objects.specification.PlayHistory;
 import se.michaelthelin.spotify.model_objects.specification.Track;
+import se.michaelthelin.spotify.model_objects.specification.User;
 import se.michaelthelin.spotify.requests.authorization.authorization_code.AuthorizationCodeRequest;
 import se.michaelthelin.spotify.requests.authorization.authorization_code.AuthorizationCodeUriRequest;
+import se.michaelthelin.spotify.requests.data.artists.GetArtistRequest;
+import se.michaelthelin.spotify.requests.data.artists.GetSeveralArtistsRequest;
 import se.michaelthelin.spotify.requests.data.personalization.simplified.GetUsersTopArtistsRequest;
 import se.michaelthelin.spotify.requests.data.personalization.simplified.GetUsersTopTracksRequest;
 import se.michaelthelin.spotify.requests.data.player.GetCurrentUsersRecentlyPlayedTracksRequest;
 import se.michaelthelin.spotify.requests.data.tracks.GetAudioFeaturesForSeveralTracksRequest;
+import se.michaelthelin.spotify.requests.data.users_profile.GetCurrentUsersProfileRequest;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -120,13 +124,29 @@ public class SpotifyController {
         return spotifyApi.getAccessToken();
     }
 
+    @GetMapping("/get-user-profile")
+    public User getUserProfile(){
+        final GetCurrentUsersProfileRequest getCurrentUsersProfileRequest = spotifyApi.getCurrentUsersProfile().build();
+
+        try{
+            final User profile = getCurrentUsersProfileRequest.execute();
+
+            return profile;
+        } catch(Exception e){
+            System.out.println("Something went wrong!\n" + e.getMessage());
+        }
+        return null;
+
+    }
+
+
 
     @GetMapping("/top-artists")
-    public Artist[] getUserTopArtists(@RequestParam(name = "time_range") String time_range){
+    public Artist[] getUserTopArtists(@RequestParam(name = "time_range") String time_range, @RequestParam(name="limit") int limit){
         
         final GetUsersTopArtistsRequest getUsersTopArtistsRequest = spotifyApi.getUsersTopArtists()
             .time_range(time_range)
-            .limit(10)
+            .limit(limit)
             .build();
 
         try{
@@ -176,6 +196,23 @@ public class SpotifyController {
 
         return new Track[0];
     }
+
+    @GetMapping("/artists-by-id")
+    public Artist[] getArtistsById(@RequestParam(name="ids") String ids){
+
+        final GetSeveralArtistsRequest getSeveralArtistsRequest = spotifyApi.getSeveralArtists(ids).build();
+
+        try{
+            final Artist[] artists = getSeveralArtistsRequest.execute();
+            return artists;
+        } catch(Exception e){
+            System.out.print("Something went wrong!\n" + e.getMessage());
+        }
+
+        return new Artist[0];
+    }
+
+
 
     @GetMapping("/track-audio-features")
     public AudioFeatures[] getAudioFeaturesOfTracks(@RequestParam(name="ids") String ids){

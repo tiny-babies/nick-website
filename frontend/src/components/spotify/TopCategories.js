@@ -4,7 +4,7 @@ class TopCategories extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            category: 1,
+            category: 0,
             songList: [],
         }
 
@@ -16,18 +16,23 @@ class TopCategories extends React.Component{
 
     componentDidMount() {
 
-        // let maxVal = 0;
-        // let topCategory = "acousticness";
-        // let topCategoryIndex = 1;
-        // for (topCategoryIndex; topCategoryIndex < this.props.topTracksData.length; topCategoryIndex++) {
-        //     if (this.props.topTracksData[topCategoryIndex].value > maxVal) {
-        //         topCategory = this.props.topTracksData[topCategoryIndex].key;
-        //         maxVal = this.props.topTracksData[topCategoryIndex].value;
-        //     }
-        // }
+        if(this.state.category === 0){
+            let songList = [];
+            for(let i = 0; i < this.props.topTracks.length; i++){
+                if (i === 20) break;
+                songList.push(this.props.topTracks[i]);
+                
+            }
+            this.setState({
+                songList,
+            })
+            return
+        }
 
         let categoryName="acousticness"
         let maxVal = 0;
+
+        
 
         if(this.state.category < this.props.topTracksData.length){
             categoryName = this.props.topTracksData[this.state.category].key;
@@ -42,11 +47,7 @@ class TopCategories extends React.Component{
         }
 
 
-        // console.log(maxVal, topCategory);
-        // this.setState({
-        //     topCategory,
-        //     topCategoryIndex,
-        // })
+
 
         let songList = [];
 
@@ -79,6 +80,17 @@ class TopCategories extends React.Component{
 
     songListUpdate(category){
 
+
+        if (false == category.toString()) {
+
+            let songList = [];
+            for (let i = 0; i < this.props.topTracks.length; i++) {
+                if (i === 20) break;
+                songList.push(this.props.topTracks[i]);
+                
+            }
+            return songList;
+        }
         let categoryName = "acousticness"
         let maxVal = 0;
 
@@ -143,6 +155,7 @@ class TopCategories extends React.Component{
                     Here are your top songs in... 
                 </h2>
                 <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={this.dropDownChange} value={this.state.category}>
+                    <option value={0}>Total</option>
                     <option value={1}>Acousticness</option>
                     <option value={2}>Danceability</option>
                     <option value={3}>Energy</option>

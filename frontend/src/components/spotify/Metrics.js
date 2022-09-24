@@ -5,6 +5,9 @@ import {ButtonGroup } from 'reactstrap';
 import '../../styles/Spotify.css'
 import BarChart from './BarChart';
 import TopCategories from './TopCategories';
+import PieChart from "./PieChart";
+
+
 
 
 class Metrics extends React.Component{
@@ -12,23 +15,45 @@ class Metrics extends React.Component{
         super(props);
         this.state = {
             isLoading: true,
+            userProfile: [],
             topArtists: [],
             topTracks: [],
             topTracksData: [],
             topTracksDataEach: [],
+            artistList: [],
             rSelected: "short_term"
         };
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
     }
 
-    async getUserRecentlyPlayed(){
-        const response = await axios.get("http://localhost:8080/api/spotify/recent-tracks")
-        console.log(response.data);
+    // async getUserRecentlyPlayed(){
+    //     const response = await axios.get("http://localhost:8080/api/spotify/recent-tracks")
+    //     console.log(response.data);
+    //     return response.data;
+    // }
+
+    async getUserProfile(){
+        const response = await axios.get("http://localhost:8080/api/spotify/get-user-profile");
+        // console.log(response.data);
         return response.data;
     }
 
+    async getArtistsById(){
+        let ids = [];
+        this.state.topTracks.forEach((item) => {
+            ids.push(item.artists[0].id);
+        });
+        const endpoint = "http://localhost:8080/api/spotify/artists-by-id";
+        let res = await axios.get(endpoint, {
+            params: {
+                ids: ids.join()
+            }
+        });
+        return res.data;
+    }
+
     async getUserTopArtists(rSelected){
-        const response = await axios.get("http://localhost:8080/api/spotify/top-artists?time_range=" + rSelected);
+        const response = await axios.get("http://localhost:8080/api/spotify/top-artists?time_range=" + rSelected + "&limit=10");
         // console.log(response.data);
         return response.data;
     }
@@ -102,11 +127,15 @@ class Metrics extends React.Component{
     async componentDidMount(){
         const resTopTracksData = await this.getTopTrackData();
         const resTopArtists = await this.getUserTopArtists(this.state.rSelected);
-        const resRecentlyPlayed = await this.getUserRecentlyPlayed();
+        const resUserProfile = await this.getUserProfile();
+        const resArtistList = await this.getArtistsById();
+        // const resRecentlyPlayed = await this.getUserRecentlyPlayed();
         this.setState({
             topArtists: resTopArtists,
             topTracksData: resTopTracksData,
-            isLoading: false
+            isLoading: false,
+            userProfile: resUserProfile,
+            artistList: resArtistList,
         });
 
     }
@@ -150,7 +179,8 @@ class Metrics extends React.Component{
             <React.Fragment>
                 <div className="app-body-container">
                     <div className="App-body">
-
+                    
+                    
                         <Button
                             className="submit-button"
                             variant="danger"
@@ -158,6 +188,26 @@ class Metrics extends React.Component{
                         >
                             Logout
                         </Button>
+
+                        <h1 className="home-h1">Hello, {this.state.userProfile.displayName}</h1>
+                        <h2 className="home-h2">Here are your Spotify stats...</h2>
+
+                        {!this.state.artistList.length && (
+                            <h1 className="home-h1">Loading...</h1>
+                        )}
+                        {this.state.artistList.length !== 0 && (
+                            <div>
+                                <h1 className="home-h1" style={{
+                                    margin: '50px'
+                                }}>Your Favorite Genres</h1>
+                                <h3 className="home-h3">According to the top 50 songs you've listened to in the past 6 months.</h3>
+                                <PieChart
+                                    key={this.state.artistList}
+                                    artists={this.state.artistList}
+                                />
+                            </div>
+
+                        )}
 
                         <h1 className="home-h1" style={{
                             margin: '50px'
@@ -176,18 +226,20 @@ class Metrics extends React.Component{
                                 }}>NO RESULTS</h1>
                             )}
                         </div>
-
-                        
-
+                            
+                           
+   
                             {!this.state.topTracksData.length && (
                                 <h1 className="home-h1">Loading...</h1>
                             )}
-                            {this.state.topTracksData.length != 0 && (
+                            {this.state.topTracksData.length !== 0 && (
                                 <div>
                                     <h1 className="home-h1" style={{
                                     margin: '50px'
                                     }}>Your Type of Songs</h1>
-                                    <h3 className="home-h3">According to the top 50 songs you've listened to the past 6 months.</h3>
+                                    <h3 className="home-h3">According to the top 50 songs you've listened to in the past 6 months.</h3>
+                                    
+
                                     <BarChart
                                     key={this.state.topTracksData}
                                     trackData={this.state.topTracksData}
@@ -195,6 +247,9 @@ class Metrics extends React.Component{
                                 </div>
                         
                               )} 
+
+
+                           
 
 
                         <TopCategories

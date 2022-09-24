@@ -13,7 +13,7 @@ const AppNavbar = () => {
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div className="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
                             <a className="nav-link app-nav-item" id="app-nav-home" href="/#home-top">Home </a>
@@ -28,8 +28,16 @@ const AppNavbar = () => {
                             <a className="nav-link app-nav-item" id="app-nav-contact" href="/#home-contact">Contact</a>
                         </li>
                     </ul>
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <a className="nav-link app-nav-item" id="app-nav-spotify" href="/spotify">
+
+                                Spotify Analysis App </a>
+                        </li>
+                    </ul>
 
                 </div>
+
             </Navbar >
         </header>
 
