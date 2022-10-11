@@ -1,0 +1,4 @@
+com\johnson\jugtours\JugtoursApplication.class
+com\johnson\jugtours\controllers\SpotifyController.class
+com\johnson\jugtours\controllers\FrontendController.class
+com\johnson\jugtours\controllers\FrontendProxyController.class
